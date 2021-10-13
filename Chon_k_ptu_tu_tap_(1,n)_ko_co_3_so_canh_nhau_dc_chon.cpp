@@ -31,7 +31,7 @@ int Try(int i){
 }
 
 int main(){
-    x[0]=-1;
+    x[0]=-1; // x[0] <=-1 để số 2 ko bị đánh ko thỏa mãn điều kiện
     Try(1);
 }
 
