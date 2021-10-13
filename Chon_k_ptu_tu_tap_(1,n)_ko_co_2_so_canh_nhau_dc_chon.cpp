@@ -15,7 +15,7 @@ void display(){ // in mảng màn hình
 }
 int check(int i){  // 2 phần tử cạnh nhau có hiệu là 1
  if(i==1) return 1;
- if(x[i]==x[i-1] || x[i]-x[i-1]==1 || x[i]<x[i-1]) return 0;
+ if(x[i]==x[i-1] || x[i]-x[i-1]==1 || x[i]<x[i-1]) return 0; // Tránh vòng lặp mới lấy số <= số đã được gán vào x[i]
  else return 1;
 }
 
