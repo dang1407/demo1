@@ -1,81 +1,105 @@
-#include <iostream>
-using namespace std;
-
-int x[10]={0}, n=3,M=10,a[10]={0,1,2,3};
-
-void display(){
-    int i;
- for(i=1;i<=n;i++){
- cout << x[i] << ' ';
- }
- cout << endl;
-}
-int F(int i){
-  int F=0,j;
-  if(i==0) return 0;
-  for(j=1;j<=i;j++){
-    F+=x[i]*a[i];
-  }
-  return F;
-}
-int check(){
-  int i,f=0;
-  for(i=1;i<=n;i++){
-    f+=a[i]*x[i];
-  }
-  return f==M;
-}
-
-int Try(int i){
-  int v;
-  for(v=1;v<=(M-F(i-1))/a[i]+1;v++){
-    x[i]=v;
-    if(i<n) Try(i+1);
-    else {
-        if(check()){
-            display();
-        }
-    }
-  }
-}
-
-int main(){
-    int i;
-    cout << "Nhap n,M:";
-    cin >> n >> M;
-    cout <<"Nhap cac he so a";
-    for(i=1;i<=n;i++){
-        cin >> a[i];
-    }
-    Try(1);
-}
-
-//#include<bits/stdc++.h>
-//#define fo(i,a,b) for(int i = a; i<=b;++i)
+//#include<iostream>
+//
 //using namespace std;
 //
-//int m, n, a[105], x[105];
+//int a[100], n=4;
 //
-//void write(){
-//fo(i,1,n) cout<<x[i]<<' ';
-//cout<<'\n';
-//}
-//
-//int check(){
-//int tmp = 0;
-//fo(i,1,n) tmp+=a[i]*x[i];
-//return tmp==m;
+//void display() {
+//    for(int i=1; i<=n; i++) {
+//        cout << a[i];
+//    }
+//    cout << endl;
 //}
 //
-//int tryy(int i){
-//fo(j,1,m){
-//x[i] = j;
-//if(i<n) tryy(i+1); else if (check()) write();
-//}
+//int TRY(int k) {
+//    for(int v=0; v<=1; v++) {
+//        a[k]=v;
+//        if(k==n) display();
+//        else TRY(k+1);
+//    }
 //}
 //
-//int main(){
-//cin>>m>>n;
-//fo(i,1,n) cin>>a[i];
-//tryy(1);
+//int main() {
+//    TRY(1);
 //}
+//
+//// Liệt kê số chỉnh hợp chập k của n
+//#include<stdio.h>
+//#include<math.h>
+//int a[100]= {},n,k;
+//void xuat(int a[],int k) {
+//    for (int i=0; i<k; i++) printf("%d ",a[i]);
+//    printf("\n");
+//}
+//int kiemtra(int i,int x) {
+//    for (int j=0; j<i; j++) {
+//        if (a[j]==x) return 0;
+//    }
+//    return 1;
+//}
+//void try1(int i) {
+//    for (int x=1; x<=n; x++) {
+//        if (kiemtra(i,x)==1) {
+//            a[i]=x;
+//            if (i==k-1) {
+//                xuat(a,k);
+//            } else try1(i+1);
+//        }
+//        a[i]=0;
+//    }
+//}
+//int main() {
+//    scanf("%d%d",&k,&n);
+//    try1(0);
+//    return 0;
+//}
+
+#include<iostream>
+//#include<stdlib.h>
+using namespace std;
+
+struct Node {
+    int value;
+    Node* next;
+};
+
+Node* makeNode(int x) {
+    Node *p= new Node;
+    p->value =x;
+    p->next = NULL;
+    return p;
+}
+
+Node *insertAfter(Node *h, Node *p, int x) {
+    if(p==NULL) return h;
+    Node *q = makeNode(x);
+    if(h==NULL) return q;
+    q->next = p->next;
+    p->next = q;
+    return h;
+}
+
+void printList(Node *h) {
+    Node *p = h;
+    while(p!=NULL) {
+        printf("%d ", p->value);
+        p=p->next;
+    }
+}
+
+Node* finLast(Node* h) {
+    Node *p=h;
+    while(p!=NULL) {
+        if(p->next == NULL) return p;
+        p=p->next;
+    }
+    return NULL;
+}
+int main() {
+    Node *head;
+    head = makeNode(100);
+    printList(head);
+    insertAfter(head, head, 30);
+    cout << endl;
+    printList(head);
+}
