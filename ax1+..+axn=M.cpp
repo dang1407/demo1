@@ -15,7 +15,6 @@ void Try(int i){
      	if(s + a[i]*v<=n){
      		x[i] = v;
      		s= s + a[i]*v;
-     		cout << "i = " << i << ", s= " << s <<", x[" <<i << "] =" <<x[i] << endl;
      		if(i==k && s==n) print(x,k);
      		else if(i==k && s!=n) {
                 s = s-a[i]*v;
